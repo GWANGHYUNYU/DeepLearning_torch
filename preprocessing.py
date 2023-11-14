@@ -12,12 +12,11 @@ for(path, dirs, f) in os.walk(checkdir):
         if file.endswith(tuple(format)):
             try:
                 temp_path = os.path.join(path, file)
-                image = Image.open(temp_path).load()
-                # image.close()
+                image = Image.open(temp_path)       # open은 파일을 열고(간단하게)
+                image.load()                        # load는 파일을 메모리에서 읽음
                 #print(image)
             except Exception as e:
                 print("An exception is raised:", e)
                 print(file)
+                image.close()
                 os.remove(path+"/"+file)
-
-# 083717.jpg        
